@@ -1,0 +1,89 @@
+<html>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='./mystyle.css')}}"/> 
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/jquery.maphilight.js"></script>
+<body>
+    <center>
+        <a href="/">Go Back</a>
+        <h1>{{dungeon}}</h1>
+        <h2 id="place">You are outside</h2>
+        <img id="dungeon_img" src="../static/{{image}}" usemap="#image-map">
+    </center>
+    <map name="image-map">
+        {% for room in data.rooms %}
+        <area class="area" id="{{room.name | replace(" ", "_")}}" target="" alt="{{room.name}}" title="{{room.name}}" href="#" coords="{{room.coordinates}}" shape="rect">
+        {% endfor %}
+    </map>
+</body>
+
+<script>
+    function lightMe(element)
+    {
+        var data = element.data('maphilight') || {};
+        data.alwaysOn = !data.alwaysOn;
+        $(element).data('maphilight', data).trigger('alwaysOn.maphilight');
+        $(element).fillColor = 500;
+    }
+
+    var map = document.querySelector('map');
+    $('#dungeon_img').maphilight({
+      fillColor: '008800'
+ });
+ 
+    all_data = {{data["rooms"] | safe}}
+
+    let your_current_options = all_data[0]["name"];
+    // Color the walked path in red
+
+    lightMe($("#" + your_current_options.replaceAll(" ", "_")))
+    
+map.addEventListener("click", eventHandler, false);
+
+last_leads_to = []
+function eventHandler(e) {
+  e.preventDefault();
+  if (e.target != e.currentTarget) {
+    var clicked = e.target.title;
+    if (your_current_options.includes(clicked)) {
+        // Legal option - search the lead to
+        e.preventDefault();
+
+        element_to_light = $('#' + clicked.replaceAll(" ", "_"))
+        $(element_to_light).data('maphilight', {"stroke":0, "alwaysOn": true, "fillColor":"FF0000", "fillOpacity":0.3})
+        // Remove green from the path not taken
+        i = -1;
+        for (room of all_data)
+        {
+            i++
+            if (room["name"] === clicked){
+                your_current_options = all_data[i]["leads_to"];
+                path_not_taken = []
+                if (last_leads_to.length == 0) {last_leads_to = your_current_options}
+                if (last_leads_to.includes(clicked)) {path_not_taken = last_leads_to.filter(word => word != clicked);}
+                for (room of path_not_taken)
+                {
+                    $("#" + room.replaceAll(" ", "_")).data('maphilight', {"stroke":0, "alwaysOn": false})
+                }
+                document.getElementById("place").textContent = "You are at " + clicked;
+                for (room of your_current_options)
+                {
+                    lightMe($("#" + room.replaceAll(" ", "_")))
+                }
+                if (your_current_options.length == 0)
+                {
+                    alert("You finished the dungeon! You may now go to the other dungeons.")
+                }
+            }
+        }
+
+    }
+    else {
+        alert("NO")
+    }
+    console.log('click event triggered at ' + clicked);
+  }
+  e.stopPropagation();
+}
+
+</script>
+</html>

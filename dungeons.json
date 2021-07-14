@@ -1,0 +1,122 @@
+{
+    "Lost Mine of Phandelver" : {
+        "image" : "Lost_Mine_of_Phandelver.jpg",
+        "rooms" : [{
+            "name" : "Cave Entrance",
+            "effect" : "Scry 1.",
+            "coordinates" : "614,269,56,138",
+            "leads_to" : ["Goblin Lair", "Mine Tunnels"]
+        },{
+            "name" : "Goblin Lair",
+            "effect" : "Create a 1/1 red Goblin creature token.",
+            "coordinates": "330,448,60,284",
+            "leads_to" : ["Storeroom", "Dark Pool"]
+        },{
+            "name" : "Mine Tunnels",
+            "effect" : "Create a Treasure token.",
+            "coordinates": "344,283,614,448",
+            "leads_to" : ["Dark Pool", "Fungi Cavern"]
+        },{
+            "name" : "Storeroom",
+            "effect" : "Put a +1/+1 counter on target creature.",
+            "coordinates": "58,461,226,661",
+            "leads_to" : ["Temple of Dumathoin"]
+        },{
+            "name" : "Dark Pool",
+            "effect" : "Each opponent loses 1 life and you gain 1 life.",
+            "coordinates" : "439,661,238,461",
+            "leads_to" : ["Temple of Dumathoin"]
+        },{
+            "name" : "Fungi Cavern",
+            "effect" : "Target creature gets -4/-0 until your next turn.",
+            "coordinates" : "613,662,449,460",
+            "leads_to" : ["Temple of Dumathoin"]
+        },{
+            "name" : "Temple of Dumathoin",
+            "effect" : "Draw a card.",
+            "coordinates" : "615,804,56,675",
+            "leads_to" : []
+        }
+    ]
+    },
+    "Dungeon of the Mad Mage" : {
+        "image" : "Dungeon_of_the_Mad_Mage.jpg",
+        "rooms" : [{
+            "name" : "Yawning Portal",
+            "effect" : "You gain 1 life.",
+            "coordinates" : "58,137,614,201",
+            "leads_to" : ["Dungeon Level"]
+        },{
+            "name" : "Dungeon Level",
+            "effect" : "Scry 1.",
+            "coordinates" : "59,211,615,270",
+            "leads_to" : ["Goblin Bazaar", "Twisted Caverns"]
+        },{
+            "name" : "Goblin Bazaar",
+            "effect" : "Create a Treasure token.",
+            "coordinates" : "56,282,328,412",
+            "leads_to" : ["Lost Level"]
+        },{
+            "name" : "Twisted Caverns",
+            "effect" : "Target creature can't attack until your next turn.",
+            "coordinates" : "616,411,342,281",
+            "leads_to" : ["Lost Level"]
+        },{
+            "name" : "Lost Level",
+            "effect" : "Scry 2.",
+            "coordinates" : "616,482,56,424",
+            "leads_to" : ["Runestone Caverns", "Muiral's Graveyard"]
+        },{
+            "name" : "Runestone Caverns",
+            "effect" : "Exile the top two cards of your library. You may play them.",
+            "coordinates" : "57,496,328,625",
+            "leads_to" : ["Deep Mines"]
+        },{
+            "name" : "Muiral's Graveyard",
+            "effect" : "Create two 1/1 black Skeleton creature tokens.",
+            "coordinates" : "341,494,614,626",
+            "leads_to" : ["Deep Mines"]
+        },{
+            "name" : "Deep Mines",
+            "effect" : "Scry 3.",
+            "coordinates" : "615,695,58,638",
+            "leads_to" : ["Mad Wizard's Lair"]
+        },{
+            "name" : "Mad Wizard's Lair",
+            "effect" : "Draw three cards and reveal them. You may cast one of them without paying its mana cost.",
+            "coordinates" : "58,709,615,802",
+            "leads_to" : []
+        }
+    ]
+    },
+    "Tomb of Annihilation" : {
+        "image" : "Tomb_of_Annihilation.jpg",
+        "rooms" : [{
+            "name" : "Trapped Entry",
+            "effect" : "Each player loses 1 life.",
+            "coordinates" : "56,138,615,270",
+            "leads_to" : ["Veils of Fear", "Oubliette"]
+        },{
+            "name" : "Veils of Fear",
+            "effect" : "Each player loses 2 life unless they discard a card.",
+            "coordinates" : "59,282,328,447",
+            "leads_to" : ["Sandfall Cell"]
+        },{
+            "name" : "Sandfall Cell",
+            "effect" : "Each player loses 2 life unless they sacrifice an artifact, a creature, or a land.",
+            "coordinates" : "56,459,328,627",
+            "leads_to" : ["Cradle of the Death God"]
+        },{
+            "name" : "Oubliette",
+            "effect" : "Discard a card and sacrifice an artifact, a creature, and a land.",
+            "coordinates" : "341,282,615,627",
+            "leads_to" : ["Cradle of the Death God"]
+        },{
+            "name" : "Cradle of the Death God",
+            "effect" : "Create The Atropal, a legendary 4/4 black God Horror creature token with deathtouch.",
+            "coordinates" : "57,638,615,801",
+            "leads_to" : []
+        }
+    ]
+    }
+}

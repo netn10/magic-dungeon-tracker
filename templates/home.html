@@ -1,0 +1,20 @@
+<html>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='./mystyle.css')}}"/> 
+
+<body>
+    <center>
+        <h1>Magic: the Gathering Dungeon Crawler</h1>
+        
+        <div class="row">
+        {% for image in all_images %}
+        <div class="column">
+        <a href="dungeon/{{image}}">
+            <img width="100%" class="preview" src="static/{{image}}">
+        </a>
+        </div>
+        {% endfor %}
+        </div>
+    </center>
+    <p>Wizards of the Coast, Magic: The Gathering, and their logos are trademarks of Wizards of the Coast LLC. © 1995-2021 Wizards. All rights reserved. Nothing on this site is affiliated with Wizards of the Coast LLC.</p>
+</body>
+</html>
