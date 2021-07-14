@@ -5,16 +5,41 @@
     <center>
         <h1>Magic: the Gathering Dungeon Crawler</h1>
         
+        <button onclick="newGame()" id="new_game">New Game</button>
+        <button onclick="window.location.href='/about'">About</button>
+
         <div class="row">
         {% for image in all_images %}
         <div class="column">
-        <a href="dungeon/{{image}}">
+        <a href="dungeon/{{image | replace(".jpg", "")}}">
             <img width="100%" class="preview" src="static/{{image}}">
         </a>
+        <h2>Times Finished: <span id={{image  | replace(".jpg", "")}}></span></h2>
         </div>
         {% endfor %}
         </div>
     </center>
     <p>Wizards of the Coast, Magic: The Gathering, and their logos are trademarks of Wizards of the Coast LLC. © 1995-2021 Wizards. All rights reserved. Nothing on this site is affiliated with Wizards of the Coast LLC.</p>
 </body>
+
+<script>
+
+var allSpans = document.getElementsByTagName('span');
+
+for (span of allSpans) {
+    if (localStorage.getItem(span.id) === null) {
+        localStorage.setItem(span.id, 0);
+    }
+    span.textContent = localStorage.getItem(span.id);
+}
+
+function newGame(){
+    if (confirm("Are you sure?"))
+    for (span of allSpans) {
+        localStorage.setItem(span.id, 0);
+    span.textContent = localStorage.getItem(span.id);
+}
+}
+
+</script>
 </html>

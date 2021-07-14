@@ -4,19 +4,23 @@
     <script type="text/javascript" src="../static/jquery.maphilight.js"></script>
 <body>
     <center>
-        <a href="/">Go Back</a>
+        <button onclick="window.location.href='/'">Go Back</button>
         <h1>{{dungeon}}</h1>
         <h2 id="place">You are outside</h2>
         <img id="dungeon_img" src="../static/{{image}}" usemap="#image-map">
     </center>
     <map name="image-map">
         {% for room in data.rooms %}
-        <area class="area" id="{{room.name | replace(" ", "_")}}" target="" alt="{{room.name}}" title="{{room.name}}" href="#" coords="{{room.coordinates}}" shape="rect">
+        <area class="area" id="{{room.name | replace(" ", "_") | replace("'", "_")}}" target="" alt="{{room.name}}" title="{{room.name}}" href="#" coords="{{room.coordinates}}" shape="rect">
         {% endfor %}
     </map>
 </body>
 
 <script>
+    function roomNameFixer(name)
+    {
+        return $("#" + name.replaceAll(" ", "_").replaceAll("'", "_"));
+    }
     function lightMe(element)
     {
         var data = element.data('maphilight') || {};
@@ -35,7 +39,7 @@
     let your_current_options = all_data[0]["name"];
     // Color the walked path in red
 
-    lightMe($("#" + your_current_options.replaceAll(" ", "_")))
+    lightMe(roomNameFixer(your_current_options))
     
 map.addEventListener("click", eventHandler, false);
 
@@ -48,7 +52,7 @@ function eventHandler(e) {
         // Legal option - search the lead to
         e.preventDefault();
 
-        element_to_light = $('#' + clicked.replaceAll(" ", "_"))
+        element_to_light = roomNameFixer(clicked);
         $(element_to_light).data('maphilight', {"stroke":0, "alwaysOn": true, "fillColor":"FF0000", "fillOpacity":0.3})
         // Remove green from the path not taken
         i = -1;
@@ -62,16 +66,21 @@ function eventHandler(e) {
                 if (last_leads_to.includes(clicked)) {path_not_taken = last_leads_to.filter(word => word != clicked);}
                 for (room of path_not_taken)
                 {
-                    $("#" + room.replaceAll(" ", "_")).data('maphilight', {"stroke":0, "alwaysOn": false})
+                    roomNameFixer(room).data('maphilight', {"stroke":0, "alwaysOn": false})
                 }
                 document.getElementById("place").textContent = "You are at " + clicked;
                 for (room of your_current_options)
                 {
-                    lightMe($("#" + room.replaceAll(" ", "_")))
+                    lightMe(roomNameFixer(room));
                 }
                 if (your_current_options.length == 0)
                 {
-                    alert("You finished the dungeon! You may now go to the other dungeons.")
+                    alert("You finished the dungeon! You may now go to the other dungeons.");
+
+                    dungeon = '{{dungeon | replace(" ", "_")}}'
+                    number_of_finishes = localStorage.getItem(dungeon)
+                    localStorage.setItem(dungeon, ++number_of_finishes);
+                    window.location.replace("..");
                 }
             }
         }

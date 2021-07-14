@@ -30,3 +30,16 @@
     clear: both;
     display: table;
   }
+
+  button {
+    font-family: beleren;
+    src: url('Beleren2016-Bold.ttf');
+    font-weight: bold;
+    background-color: darkblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+  }

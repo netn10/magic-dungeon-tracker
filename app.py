@@ -22,6 +22,11 @@ def dungeon(dungeon):
         print(data)
         image = data["image"]
     return render_template('dungeon.html', image=image, dungeon=dungeon, data=data)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 if __name__ == '__main__':
     app.secret_key = "as"
     app.run(debug=True)
