@@ -12,7 +12,7 @@
         {% for image in all_images %}
         <div class="column">
         <a href="dungeon/{{image | replace(".jpg", "")}}">
-            <img width="100%" class="preview" src="static/{{image}}">
+            <img style="width:100%" class="preview" src="static/{{image}}">
         </a>
         <h2>Times Finished: <span id={{image  | replace(".jpg", "")}}></span></h2>
         </div>

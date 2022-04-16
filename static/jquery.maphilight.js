@@ -317,7 +317,7 @@
 					}
 				});
 			}).trigger('alwaysOn.maphilight')
-			.bind('mouseover.maphilight focusin.maphilight', function(e) {
+			.bind('doubleclick.maphilight focusin.maphilight', function(e) {
 				var shape, area_options, area = e.target;
 				area_options = options_from_area(area, options);
 				if(!area_options.neverOn && !area_options.alwaysOn) {
