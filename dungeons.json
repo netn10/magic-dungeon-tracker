@@ -118,5 +118,56 @@
             "leads_to" : []
         }
     ]
+    },
+    "Undercity" : {
+        "image" : "Undercity.jpg",
+        "rooms" : [{
+            "name" : "Secret Entrance",
+            "effect" : "Search your library for a basic land card, reveal it, put it into your hand, then shuffle.",
+            "coordinates" : "30,94,484,171",
+            "leads_to" : ["Forge", "Lost Well"]
+        },{
+            "name" : "Forge",
+            "effect" : "Put two +1/+1 counters on target creature.",
+            "coordinates" : "28,178,273,255",
+            "leads_to" : ["Trap", "Arena"]
+        },{
+            "name" : "Lost Well",
+            "effect" : "Scry 2",
+            "coordinates" : "281,178,484,255",
+            "leads_to" : ["Arena", "Stash"]
+        },
+        {
+            "name" : "Trap",
+            "effect" : "Target player loses 2 life.",
+            "coordinates" : "30,264,232,340",
+            "leads_to" : ["Archives"]
+        },{
+            "name" : "Arena",
+            "effect" : "Goad target creature.",
+            "coordinates" : "241,260,315,340",
+            "leads_to" : ["Archives", "Catacombs"]
+        },{
+            "name" : "Stash",
+            "effect" : "Create a treasure token.",
+            "coordinates" : "323,262,484,340",
+            "leads_to" : ["Catacombs"]
+        },{
+            "name" : "Archives",
+            "effect" : "Draw a card.",
+            "coordinates" : "29,346,272,424",
+            "leads_to" : ["Throne of the Dead Three"]
+        },{
+            "name" : "Catacombs",
+            "effect" : "Create a 4/1 black Skeleton creature token with menace.",
+            "coordinates" : "278,344,484,424",
+            "leads_to" : ["Throne of the Dead Three"]
+        },{
+            "name" : "Throne of the Dead Three",
+            "effect" : "Reaveal the top card of ten cards of your library. Put a creature card from among them onto the battlefield, then put three +1/+1 counters on it. It gains hexproof until your next turn. Then shuffle.",
+            "coordinates" : "28,430,484,550",
+            "leads_to" : []
+        }
+    ]
     }
 }
